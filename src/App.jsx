@@ -6,6 +6,7 @@ import Navbar from "./Pages/Navbar";
 import Hero from "./Pages/Hero";
 import ProductPage from "./Pages/Product";
 import ProductDetails from './Pages/ProductDetails'
+import NewArrivals from './Pages/NewArrival'
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import Footer from "./Pages/Footer";
@@ -15,8 +16,10 @@ const Home = () => {
     <>
       <Hero />
       <ProductPage />
+      <NewANewArrivals/>
       <About />
       <Contact />
+
     </>
   );
 };
