@@ -1,9 +1,11 @@
+
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
+import { Link } from "react-router-dom";
+
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/navigation";
 
 const Hero = () => {
   const slides = [
@@ -13,10 +15,9 @@ const Hero = () => {
       subtitle: "Ultimate Sound Experience",
       desc: "Experience crystal clear sound with noise cancellation technology and premium comfort.",
       btn: "Shop Handfree",
-      img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop&crop=center",
-      color: "from-blue-900 via-blue-700 to-blue-900",
-      price: "From $99.99",
-      features: ["30hr Battery", "Noise Cancelling", "Wireless"]
+      img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700&h=700&fit=crop&crop=center",
+      color: "from-blue-950 via-blue-800 to-slate-950",
+      features: ["30hr Battery", "Noise Cancelling", "Wireless"],
     },
     {
       id: 2,
@@ -24,10 +25,9 @@ const Hero = () => {
       subtitle: "Wireless Freedom",
       desc: "Advanced wireless earbuds with powerful bass, sleek design, and all-day comfort.",
       btn: "Shop Earbuds",
-      img: "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=500&h=500&fit=crop&crop=center",
-      color: "from-purple-900 via-purple-700 to-purple-900",
-      price: "From $79.99",
-      features: ["True Wireless", "24hr Case", "Waterproof"]
+      img: "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=700&h=700&fit=crop&crop=center",
+      color: "from-purple-950 via-purple-800 to-slate-950",
+      features: ["True Wireless", "24hr Case", "Waterproof"],
     },
     {
       id: 3,
@@ -35,204 +35,184 @@ const Hero = () => {
       subtitle: "Stay Connected",
       desc: "Premium smart watches with health monitoring, GPS, and seamless connectivity.",
       btn: "Shop Watches",
-      img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop&crop=center",
-      color: "from-emerald-900 via-emerald-700 to-emerald-900",
-      price: "From $199.99",
-      features: ["Health Monitor", "GPS Tracking", "7-Day Battery"]
+      img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=700&h=700&fit=crop&crop=center",
+      color: "from-emerald-950 via-emerald-800 to-slate-950",
+      features: ["Health Monitor", "GPS Tracking", "7-Day Battery"],
     },
   ];
 
   return (
-    <section className="relative w-full h-screen text-white overflow-hidden mt-4">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-black/20 z-0"></div>
-      
+    <section className="mt-20 w-full overflow-hidden font-[Arial,sans-serif]">
+
       <Swiper
-        modules={[Autoplay, Pagination, Navigation]}
-        autoplay={{ 
-          delay: 5000, 
+        modules={[Autoplay, Pagination]}
+        autoplay={{
+          delay: 4500,
           disableOnInteraction: false,
-          pauseOnMouseEnter: true 
+          pauseOnMouseEnter: true,
         }}
-        pagination={{ 
+        pagination={{
           clickable: true,
-          bulletClass: 'swiper-pagination-bullet !bg-white/50 !w-3 !h-3 !mx-1',
-          bulletActiveClass: 'swiper-pagination-bullet-active !bg-white !w-8'
-        }}
-        navigation={{
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
+          bulletClass: "swiper-pagination-bullet !bg-white/50 !w-2.5 !h-2.5 !mx-1.5 !opacity-100",
+          bulletActiveClass: "!bg-white !w-7 !rounded-full",
         }}
         loop={true}
-        speed={1000}
-        effect="fade"
-        className="w-full h-full"
+        speed={800}
+        className="hero-slider w-full"
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <div className={`relative w-full h-full bg-gradient-to-br ${slide.color}`}>
-              {/* Animated Background Elements */}
-              <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-10 left-10 w-72 h-72 bg-white rounded-full mix-blend-overlay animate-pulse"></div>
-                <div className="absolute bottom-10 right-10 w-96 h-96 bg-white rounded-full mix-blend-overlay animate-pulse delay-1000"></div>
+
+            <div
+              className={`relative flex min-h-[680px] lg:min-h-[calc(100svh-80px)] items-center overflow-hidden bg-gradient-to-br ${slide.color}`}
+            >
+
+              {/* Background Effects */}
+              <div className="absolute inset-0 overflow-hidden pointer-events-none">
+
+                <div className="absolute -top-32 -left-32 h-80 w-80 rounded-full bg-white/5 blur-3xl" />
+
+                <div className="absolute -bottom-32 -right-20 h-96 w-96 rounded-full bg-white/10 blur-3xl" />
+
+                <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] bg-[size:30px_30px]" />
+
               </div>
 
-              <div className="container mx-auto px-6 h-full flex items-center justify-between">
+              <div className="relative z-10 container mx-auto grid w-full grid-cols-1 items-center gap-8 px-5 py-12 sm:px-8 md:px-12 lg:grid-cols-2 lg:gap-12 lg:px-16 lg:py-16">
+
                 {/* Text Content */}
-                <div className="relative z-10 max-w-2xl space-y-6 animate-fade-in-up">
+                <div className="order-2 text-center lg:order-1 lg:text-left">
+
                   {/* Badge */}
-                  <div className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
-                    <span className="text-sm font-semibold">🔥 Best Seller</span>
+                  <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-md">
+
+                    <span className="h-2 w-2 rounded-full bg-green-400" />
+
+                    <span className="text-xs font-semibold tracking-wider text-white sm:text-sm">
+                      BEST COLLECTION
+                    </span>
+
                   </div>
 
-                  {/* Title & Subtitle */}
-                  <div className="space-y-3">
-                    <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-                      {slide.title}
-                    </h1>
-                    <h2 className="text-2xl md:text-3xl text-gray-200 font-light">
-                      {slide.subtitle}
-                    </h2>
-                  </div>
+                  {/* Title */}
+                  <h1 className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl">
+
+                    {slide.title}
+
+                  </h1>
+
+                  {/* Subtitle */}
+                  <h2 className="mt-4 text-xl font-medium text-white/80 sm:text-2xl md:text-3xl">
+
+                    {slide.subtitle}
+
+                  </h2>
 
                   {/* Description */}
-                  <p className="text-lg md:text-xl text-gray-200 leading-relaxed max-w-lg">
+                  <p className="mx-auto mt-5 max-w-lg text-sm leading-7 text-gray-200 sm:text-base md:text-lg lg:mx-0">
+
                     {slide.desc}
+
                   </p>
 
-                  {/* Price */}
-                  <div className="text-2xl font-bold text-white">
-                    {slide.price}
-                  </div>
-
                   {/* Features */}
-                  <div className="flex flex-wrap gap-3">
+                  <div className="mt-7 flex flex-wrap justify-center gap-2.5 lg:justify-start">
+
                     {slide.features.map((feature, index) => (
-                      <span 
+                      <span
                         key={index}
-                        className="px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-sm border border-white/20"
+                        className="rounded-full border border-white/20 bg-white/10 px-3 py-2 text-xs font-medium text-white backdrop-blur-sm sm:text-sm"
                       >
-                        ✓ {feature}
+                        <span className="mr-1.5 text-green-300">✓</span>
+                        {feature}
                       </span>
                     ))}
+
                   </div>
 
-                  {/* CTA Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                    <button className="px-8 py-4 bg-white text-gray-900 hover:bg-gray-100 rounded-xl shadow-2xl text-lg font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95">
+                  {/* Buttons */}
+                  <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
+
+                    <Link
+                      to="/products"
+                      className="inline-flex items-center justify-center rounded-lg bg-white px-8 py-4 text-sm font-bold text-gray-900 shadow-lg transition duration-300 hover:-translate-y-1 hover:bg-gray-100 sm:text-base"
+                    >
                       {slide.btn}
-                    </button>
-                    <button className="px-8 py-4 bg-transparent text-white border-2 border-white/50 hover:border-white rounded-xl text-lg font-semibold transition-all duration-300 backdrop-blur-sm">
+                    </Link>
+
+                    <Link
+                      to="/product-details"
+                      className="inline-flex items-center justify-center rounded-lg border border-white/50 bg-white/5 px-8 py-4 text-sm font-bold text-white backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:bg-white hover:text-gray-900 sm:text-base"
+                    >
                       Learn More
-                    </button>
+                    </Link>
+
                   </div>
+
                 </div>
 
                 {/* Product Image */}
-                <div className="relative z-10 hidden lg:block animate-float">
-                  <div className="relative">
-                    {/* Glow Effect */}
-                    <div className="absolute inset-0 bg-white/20 rounded-full blur-3xl transform scale-110"></div>
-                    
+                <div className="order-1 flex justify-center lg:order-2">
+
+                  <div className="relative w-full max-w-[260px] sm:max-w-[320px] md:max-w-[380px] lg:max-w-[440px]">
+
+                    {/* Image Glow */}
+                    <div className="absolute inset-5 rounded-full bg-white/20 blur-3xl" />
+
                     {/* Image Container */}
-                    <div className="relative bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 shadow-2xl">
+                    <div className="relative overflow-hidden rounded-3xl border border-white/20 bg-white/10 p-4 shadow-2xl backdrop-blur-md sm:p-6 md:p-8">
+
                       <img
                         src={slide.img}
                         alt={slide.title}
-                        className="w-96 h-96 object-contain drop-shadow-2xl transform hover:scale-105 transition-transform duration-500"
+                        loading={slide.id === 1 ? "eager" : "lazy"}
+                        className="aspect-square w-full rounded-2xl object-cover transition duration-700 hover:scale-105"
                       />
+
                     </div>
-                    
-                    {/* Floating Elements */}
-                    <div className="absolute -top-4 -right-4 w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center shadow-2xl">
-                      <span className="text-black font-bold text-sm">-20%</span>
+
+                    {/* Floating Badge */}
+                    <div className="absolute -right-3 -top-3 flex h-16 w-16 items-center justify-center rounded-full border-4 border-white/20 bg-white text-center shadow-xl sm:-right-5 sm:-top-5 sm:h-20 sm:w-20">
+
+                      <span className="text-xs font-bold text-gray-900 sm:text-sm">
+                        PREMIUM
+                      </span>
+
                     </div>
+
                   </div>
+
                 </div>
+
               </div>
+
             </div>
+
           </SwiperSlide>
         ))}
-
-        {/* Custom Navigation Arrows */}
-        <div className="swiper-button-next !text-white !w-16 !h-16 after:!text-2xl !mr-8 hover:!scale-110 transition-transform"></div>
-        <div className="swiper-button-prev !text-white !w-16 !h-16 after:!text-2xl !ml-8 hover:!scale-110 transition-transform"></div>
       </Swiper>
 
-      {/* Additional Info Bar */}
-      {/* <div className="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md border-t border-white/20 z-20">
-        <div className="container mx-auto px-6 py-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-            <div className="flex items-center justify-center space-x-3">
-              <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
-                <span className="text-2xl">🚚</span>
-              </div>
-              <div className="text-left">
-                <div className="font-semibold">Free Shipping</div>
-                <div className="text-sm text-gray-300">On orders over $50</div>
-              </div>
-            </div>
-            
-            <div className="flex items-center justify-center space-x-3">
-              <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
-                <span className="text-2xl">🔒</span>
-              </div>
-              <div className="text-left">
-                <div className="font-semibold">Secure Payment</div>
-                <div className="text-sm text-gray-300">100% protected</div>
-              </div>
-            </div>
-            
-            <div className="flex items-center justify-center space-x-3">
-              <div className="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center">
-                <span className="text-2xl">↩️</span>
-              </div>
-              <div className="text-left">
-                <div className="font-semibold">30-Day Return</div>
-                <div className="text-sm text-gray-300">Money back guarantee</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
+      {/* Pagination Styling */}
+      <style>
+        {`
+          .hero-slider .swiper-pagination {
+            bottom: 22px !important;
+          }
 
-      {/* Custom CSS for Animations */}
-      <style jsx>{`
-        @keyframes fade-in-up {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
+          .hero-slider .swiper-pagination-bullet {
+            transition: all 0.3s ease;
           }
-          to {
-            opacity: 1;
-            transform: translateY(0);
+
+          @media (max-width: 640px) {
+            .hero-slider .swiper-pagination {
+              bottom: 12px !important;
+            }
           }
-        }
-        
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-20px);
-          }
-        }
-        
-        .animate-fade-in-up {
-          animation: fade-in-up 0.8s ease-out;
-        }
-        
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        
-        .swiper-pagination {
-          bottom: 120px !important;
-        }
-      `}</style>
+        `}
+      </style>
+
     </section>
   );
 };
 
 export default Hero;
-// dont add Additional Info Bar and Price and change move icons add professional and make 100 % responsible for every mobile phone
