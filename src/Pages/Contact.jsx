@@ -2,54 +2,67 @@ import React from "react";
 
 const Contact = () => {
   return (
-    <section className="bg-gray-50 min-h-screen py-16 px-6 md:px-20">
-      <div className="max-w-4xl mx-auto bg-white shadow-md rounded-2xl p-8">
-        <h1 className="text-4xl font-bold text-gray-800 text-center mb-8">
+    <section className="min-h-screen bg-gray-50 px-5 py-16 font-[Arial,sans-serif] md:px-12 lg:px-20">
+      <div className="mx-auto max-w-4xl rounded-2xl bg-white p-6 shadow-md sm:p-8 md:p-10">
+
+        {/* Heading */}
+        <h1 className="mb-6 text-center text-3xl font-bold text-gray-800 md:text-4xl">
           Contact Us
         </h1>
-        <p className="text-center text-gray-600 mb-12">
-          Have questions or need support? Fill out the form below and we’ll get back to you as soon as possible.
+
+        <p className="mx-auto mb-12 max-w-2xl text-center text-sm leading-7 text-gray-600 md:text-base">
+          Have questions or need support? Fill out the form below and
+          we’ll get back to you as soon as possible.
         </p>
 
         {/* Contact Form */}
-        <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <form className="grid grid-cols-1 gap-5 md:grid-cols-2">
+
           <input
             type="text"
             placeholder="Your Name"
-            className="col-span-1 px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
           />
+
           <input
             type="email"
             placeholder="Your Email"
-            className="col-span-1 px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
           />
+
           <input
             type="text"
             placeholder="Subject"
-            className="col-span-1 md:col-span-2 px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100 md:col-span-2"
           />
+
           <textarea
             rows="5"
             placeholder="Your Message"
-            className="col-span-1 md:col-span-2 px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
-          ></textarea>
+            className="w-full resize-none rounded-lg border border-gray-200 px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100 md:col-span-2"
+          />
+
           <button
             type="submit"
-            className="col-span-1 md:col-span-2 bg-blue-600 text-white py-3 rounded-lg hover:bg-green-600 transition"
+            className="w-full rounded-lg bg-green-600 py-3 text-sm font-semibold text-white transition duration-300 hover:bg-gray-900 md:col-span-2"
           >
             Send Message
           </button>
         </form>
 
         {/* Contact Info */}
-        <div className="mt-12 text-center">
-          <h2 className="text-xl font-semibold text-gray-800 mb-2">
-            Or reach us directly
+        <div className="mt-12 border-t border-gray-100 pt-8 text-center">
+          <h2 className="mb-4 text-xl font-bold text-gray-800">
+            Or Reach Us Directly
           </h2>
-          <p className="text-gray-600">📞 +92 300 1234567</p>
-          <p className="text-gray-600">📧 support@hammadshop.com</p>
-          <p className="text-gray-600">🏬 Lahore, Pakistan</p>
+
+          <div className="space-y-3 text-sm text-gray-600">
+            <p>📞 +92 300 1234567</p>
+            <p>📧 support@hammadshop.com</p>
+            <p>🏬 Lahore, Pakistan</p>
+          </div>
         </div>
+
       </div>
     </section>
   );
