@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./Pages/Navbar";
 import Hero from "./Pages/Hero";
-import ProductPage from "./Pages/Product";
+import Product from "./Pages/Product";
 import ProductDetails from './Pages/ProductDetails'
 import NewArrivals from './Pages/NewArrivals'
 import About from "./Pages/About";
@@ -15,7 +15,7 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <ProductPage />
+      <Product/>
       <NewArrivals/>
       <About />
       <Contact />
