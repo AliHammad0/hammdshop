@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Handfree from "../Images/handree.jfif";
+// import Handfree from "../Images/handree.jfif";
 import { FaShoppingCart, FaEye, FaHeart } from "react-icons/fa";
 
 const productsData = [
-  { id: 1, name: "Premium Handfree", price: 2499, category: "Handfree", img: Handfree },
+  { id: 1, name: "Premium Handfree", price: 2499, category: "Handfree",  img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMv3lKb69vGzodL4WS0pgFXa3bPr9p4T5AUJK2842n9w&s" },
   { id: 2, name: "Wireless Earbuds", price: 3999, category: "Earbuds", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMv3lKb69vGzodL4WS0pgFXa3bPr9p4T5AUJK2842n9w&s" },
   { id: 3, name: "Smart Watch X1", price: 7499, category: "Smart Watch", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbmz1vFrCWjf-N8ddDktv8x0GOmztr83DVHMhYQGXqow&s=10" },
   { id: 4, name: "Stylish Handfree", price: 1999, category: "Handfree", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyNhrVfP-zIRImeICIENwmYBgQlJIEtIMAIC9Db7Wm3Q&s=10" },
@@ -13,7 +13,7 @@ const productsData = [
   { id: 8, name: "Classic Smart Watch", price: 5999, category: "Smart Watch", img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9sMGwHBVu7FaoeWl2Wglk6zLBMQdFwGi29ysStCSXLA&s=10" },
   { id: 9, name: "Premium Headphones", price: 5499, category: "Headphones", img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFzonjfzjo7DAsO3C63oK6dNUvFi__F9zY6UZsLgFpPQ&s=10"},
   { id: 10, name: "Wireless Speaker", price: 3499, category: "Speakers", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRacS1QxM-JN0UqGFNicMWcKNxDXM0QcbmcjjmJy1JDDw&s=10" },
-  { id: 11, name: "Bluetooth Headphones", price: 4599, category: "Headphones", img: Handfree },
+  { id: 11, name: "Bluetooth Headphones", price: 4599, category: "Headphones",  img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMv3lKb69vGzodL4WS0pgFXa3bPr9p4T5AUJK2842n9w&s" },
   // { id: 12, name: "Mobile Accessories", price: 1499, category: "Accessories", img: Handfree },
 ];
 
