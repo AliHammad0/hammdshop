@@ -1,213 +1,288 @@
 
 import React, { useState } from "react";
 import {
-  FaEnvelope,
-  FaPhoneAlt,
-  FaMapMarkerAlt,
-  FaClock,
+  FaShoppingCart,
+  FaHeart,
+  FaBars,
+  FaTimes,
+  FaSearch,
+  FaChevronDown,
+  FaUser,
+  FaSignInAlt,
+  FaUserPlus,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
-const Contact = () => {
-  const [submitted, setSubmitted] = useState(false);
+const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [categoryOpen, setCategoryOpen] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    e.target.reset();
-  };
+  const navLinks = [
+    { name: "Home", path: "/" },
+    { name: "Products", path: "/products" },
+  ];
+
+  const categories = [
+    "Earbuds",
+    "Headphones",
+    "Smart Watches",
+    "Speakers",
+    "Accessories",
+  ];
 
   return (
-    <section className="min-h-screen bg-white px-4 py-14 font-[Arial] sm:px-8 lg:px-12">
+    <nav className="fixed left-0 top-0 z-50 w-full border-b border-gray-100 bg-white font-[Arial,sans-serif]">
 
-      {/* Heading */}
-      <div className="mx-auto mb-14 max-w-7xl text-center">
-        <p className="mb-3 text-xs font-bold uppercase tracking-[4px] text-gray-500">
-          Get In Touch
-        </p>
+      <div className="container mx-auto px-5 md:px-10">
 
-        <h1 className="text-3xl font-bold tracking-tight text-black sm:text-5xl">
-          Contact Us
-        </h1>
+        <div className="flex h-20 items-center justify-between">
 
-        <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-gray-500 sm:text-base">
-          Have a question or need assistance? We are here to help.
-          Send us a message and our team will get back to you.
-        </p>
+          {/* Logo */}
+          <Link
+            to="/"
+            className="text-2xl font-bold tracking-tight text-black"
+          >
+            HAMMAD <span className="text-gray-500">SHOP</span>
+          </Link>
 
-        <div className="mx-auto mt-6 h-1 w-16 bg-black" />
-      </div>
+          {/* Desktop Navigation */}
+          <ul className="hidden items-center gap-8 text-sm font-semibold text-gray-700 md:flex">
 
-      {/* Contact Content */}
-      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2">
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <Link
+                  to={link.path}
+                  className="transition-colors duration-200 hover:text-red-600"
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
 
-        {/* Contact Information */}
-        <div className="bg-[#f5f3ef] p-7 sm:p-10">
+            {/* Category Dropdown */}
+            <li
+              className="relative"
+              onMouseEnter={() => setCategoryOpen(true)}
+              onMouseLeave={() => setCategoryOpen(false)}
+            >
+              <button
+                onClick={() => setCategoryOpen(!categoryOpen)}
+                className="flex items-center gap-2 transition-colors hover:text-red-600"
+              >
+                Category
 
-          <p className="mb-3 text-xs font-bold uppercase tracking-[3px] text-gray-500">
-            Contact Information
-          </p>
+                <FaChevronDown
+                  size={11}
+                  className={`transition-transform duration-200 ${
+                    categoryOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
 
-          <h2 className="mb-4 text-2xl font-bold text-black sm:text-3xl">
-            Let's Talk
-          </h2>
+              {categoryOpen && (
+                <div className="absolute left-0 top-full w-56 pt-4">
+                  <div className="rounded-lg border border-gray-100 bg-white py-2 shadow-xl">
 
-          <p className="mb-10 max-w-md text-sm leading-7 text-gray-600">
-            We would love to hear from you. Contact us for product
-            inquiries, orders, support, or any other questions.
-          </p>
+                    {categories.map((category) => (
+                      <Link
+                        key={category}
+                        to={`/category/${category.toLowerCase().replaceAll(" ", "-")}`}
+                        onClick={() => setCategoryOpen(false)}
+                        className="block px-5 py-3 text-sm text-gray-700 transition-colors hover:bg-gray-50 hover:text-red-600"
+                      >
+                        {category}
+                      </Link>
+                    ))}
 
-          <div className="space-y-8">
+                  </div>
+                </div>
+              )}
+            </li>
 
-            {/* Email */}
-            <div className="flex items-start gap-4">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-black text-white">
-                <FaEnvelope size={17} />
-              </div>
+            {/* Contact */}
+            <li>
+              <Link
+                to="/contact"
+                className="transition-colors hover:text-red-600"
+              >
+                Contact
+              </Link>
+            </li>
 
-              <div>
-                <h3 className="mb-1 text-sm font-bold text-black">
-                  Email Address
-                </h3>
-                <p className="text-sm text-gray-600">
-                  support@yourbrand.com
-                </p>
-              </div>
-            </div>
+          </ul>
 
-            {/* Phone */}
-            <div className="flex items-start gap-4">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-black text-white">
-                <FaPhoneAlt size={17} />
-              </div>
+          {/* Right Icons */}
+          <div className="flex items-center gap-4 sm:gap-5">
 
-              <div>
-                <h3 className="mb-1 text-sm font-bold text-black">
-                  Phone Number
-                </h3>
-                <p className="text-sm text-gray-600">
-                  +92 300 1234567
-                </p>
-              </div>
-            </div>
+            {/* Search */}
+            <button
+              onClick={() => setSearchOpen(!searchOpen)}
+              className="text-gray-800 transition hover:text-red-600"
+              aria-label="Search"
+            >
+              <FaSearch size={18} />
+            </button>
 
-            {/* Address */}
-            <div className="flex items-start gap-4">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-black text-white">
-                <FaMapMarkerAlt size={17} />
-              </div>
+            {/* Wishlist */}
+            <button
+              className="relative text-gray-800 transition hover:text-red-600"
+              aria-label="Wishlist"
+            >
+              <FaHeart size={19} />
 
-              <div>
-                <h3 className="mb-1 text-sm font-bold text-black">
-                  Our Location
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Pakistan
-                </p>
-              </div>
-            </div>
+              <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-red-600 text-[10px] text-white">
+                2
+              </span>
+            </button>
 
-            {/* Timing */}
-            <div className="flex items-start gap-4">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-black text-white">
-                <FaClock size={17} />
-              </div>
+            {/* Cart */}
+            <button
+              className="relative text-gray-800 transition hover:text-red-600"
+              aria-label="Shopping cart"
+            >
+              <FaShoppingCart size={19} />
 
-              <div>
-                <h3 className="mb-1 text-sm font-bold text-black">
-                  Working Hours
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Monday - Saturday
-                </p>
-                <p className="text-sm text-gray-600">
-                  9:00 AM - 6:00 PM
-                </p>
-              </div>
-            </div>
+              <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-red-600 text-[10px] text-white">
+                3
+              </span>
+            </button>
+
+            {/* Login */}
+            <Link
+              to="/login"
+              className="hidden items-center gap-2 text-sm font-semibold text-gray-800 transition hover:text-red-600 sm:flex"
+            >
+              <FaUser size={16} />
+              Login
+            </Link>
+
+            {/* Signup */}
+            <Link
+              to="/signup"
+              className="hidden items-center gap-2 rounded-sm bg-black px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-red-600 sm:flex"
+            >
+              <FaUserPlus size={15} />
+              Sign Up
+            </Link>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="text-xl text-gray-800 md:hidden"
+              aria-label="Toggle menu"
+            >
+              {menuOpen ? <FaTimes /> : <FaBars />}
+            </button>
 
           </div>
         </div>
 
-        {/* Contact Form */}
-        <div className="border border-gray-200 p-7 sm:p-10">
+        {/* Search Bar */}
+        {searchOpen && (
+          <div className="border-t border-gray-100 py-4">
+            <input
+              type="text"
+              placeholder="Search products..."
+              className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm outline-none focus:border-black"
+            />
+          </div>
+        )}
 
-          <h2 className="mb-2 text-2xl font-bold text-black">
-            Send Us a Message
-          </h2>
+        {/* Mobile Navigation */}
+        {menuOpen && (
+          <div className="border-t border-gray-100 py-5 md:hidden">
 
-          <p className="mb-8 text-sm text-gray-500">
-            Fill out the form below and let us know how we can help.
-          </p>
+            <ul className="flex flex-col gap-5 text-sm font-semibold text-gray-700">
 
-          {submitted && (
-            <div className="mb-6 border border-green-200 bg-green-50 p-4 text-sm text-green-700">
-              Thank you! Your message has been submitted.
-            </div>
-          )}
+              {navLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.path}
+                    onClick={() => setMenuOpen(false)}
+                    className="block transition hover:text-red-600"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+              {/* Mobile Categories */}
+              <li>
+                <button
+                  onClick={() => setCategoryOpen(!categoryOpen)}
+                  className="flex w-full items-center justify-between hover:text-red-600"
+                >
+                  Category
 
-            <div>
-              <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-gray-700">
-                Full Name
-              </label>
-              <input
-                type="text"
-                placeholder="Enter your full name"
-                required
-                className="h-12 w-full border border-gray-300 px-4 text-sm outline-none transition focus:border-black"
-              />
-            </div>
+                  <FaChevronDown
+                    className={`transition-transform ${
+                      categoryOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
 
-            <div>
-              <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-gray-700">
-                Email Address
-              </label>
-              <input
-                type="email"
-                placeholder="Enter your email address"
-                required
-                className="h-12 w-full border border-gray-300 px-4 text-sm outline-none transition focus:border-black"
-              />
-            </div>
+                {categoryOpen && (
+                  <div className="flex flex-col gap-4 pl-4 pt-4">
+                    {categories.map((category) => (
+                      <Link
+                        key={category}
+                        to={`/category/${category.toLowerCase().replaceAll(" ", "-")}`}
+                        onClick={() => {
+                          setMenuOpen(false);
+                          setCategoryOpen(false);
+                        }}
+                        className="text-gray-600 transition hover:text-red-600"
+                      >
+                        {category}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </li>
 
-            <div>
-              <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-gray-700">
-                Subject
-              </label>
-              <input
-                type="text"
-                placeholder="Enter message subject"
-                required
-                className="h-12 w-full border border-gray-300 px-4 text-sm outline-none transition focus:border-black"
-              />
-            </div>
+              {/* Mobile Contact */}
+              <li>
+                <Link
+                  to="/contact"
+                  onClick={() => setMenuOpen(false)}
+                  className="block hover:text-red-600"
+                >
+                  Contact
+                </Link>
+              </li>
 
-            <div>
-              <label className="mb-2 block text-xs font-bold uppercase tracking-wider text-gray-700">
-                Your Message
-              </label>
-              <textarea
-                rows="5"
-                placeholder="Write your message here..."
-                required
-                className="w-full resize-none border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-black"
-              />
-            </div>
+              {/* Mobile Login */}
+              <li className="border-t border-gray-100 pt-4">
+                <Link
+                  to="/login"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center gap-3 hover:text-red-600"
+                >
+                  <FaSignInAlt size={16} />
+                  Login
+                </Link>
+              </li>
 
-            <button
-              type="submit"
-              className="h-12 w-full bg-black text-xs font-bold uppercase tracking-[2px] text-white transition duration-300 hover:bg-[#333333]"
-            >
-              Send Message
-            </button>
+              {/* Mobile Signup */}
+              <li>
+                <Link
+                  to="/signup"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center gap-3 hover:text-red-600"
+                >
+                  <FaUserPlus size={16} />
+                  Create Account
+                </Link>
+              </li>
 
-          </form>
-        </div>
+            </ul>
+          </div>
+        )}
 
       </div>
-    </section>
+    </nav>
   );
 };
 
-export default Contact;
+export default Navbar;
