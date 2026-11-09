@@ -1,10 +1,6 @@
 
-import React, { useState } from "react";
-import {
-  FaShoppingCart,
-  FaEye,
-  FaHeart,
-} from "react-icons/fa";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const products = [
   {
@@ -80,28 +76,13 @@ const products = [
 ];
 
 const NewArrivals = () => {
-  const [wishlist, setWishlist] = useState([]);
-  const [cart, setCart] = useState([]);
-
-  const toggleWishlist = (id) => {
-    setWishlist((prev) =>
-      prev.includes(id)
-        ? prev.filter((item) => item !== id)
-        : [...prev, id]
-    );
-  };
-
-  const addToCart = (product) => {
-    setCart((prev) => [...prev, product]);
-  };
-
   return (
-    <div className="min-h-screen bg-white px-4 py-12 font-[Arial] sm:px-8 lg:px-16">
+    <section className="min-h-screen bg-white px-4 py-12 font-[Arial] sm:px-8 lg:px-12">
 
       {/* Heading */}
       <div className="mx-auto mb-12 max-w-7xl text-center">
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[4px] text-gray-500">
-          Just Arrived
+        <p className="mb-3 text-xs font-bold uppercase tracking-[4px] text-gray-500">
+          Latest Collection
         </p>
 
         <h1 className="text-3xl font-bold tracking-tight text-black sm:text-5xl">
@@ -113,97 +94,76 @@ const NewArrivals = () => {
           and explore the newest products.
         </p>
 
-        <div className="mx-auto mt-6 h-1 w-16 bg-black"></div>
+        <div className="mx-auto mt-6 h-1 w-16 bg-black" />
       </div>
 
-      {/* Product Count */}
-      <div className="mx-auto mb-6 flex max-w-7xl items-center justify-between border-b border-gray-200 pb-4">
-        <p className="text-sm font-medium text-gray-700">
-          Showing {products.length} Products
+      {/* Product Toolbar */}
+      <div className="mx-auto mb-7 flex max-w-7xl items-center justify-between border-b border-gray-200 pb-4">
+        <p className="text-sm font-semibold text-gray-800">
+          {products.length} Products
         </p>
 
-        <p className="text-sm text-gray-500">
-          Latest Collection
+        <p className="text-xs font-medium uppercase tracking-wider text-gray-500">
+          New Collection
         </p>
       </div>
 
       {/* Products Grid */}
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 lg:grid-cols-4 lg:gap-x-7">
+      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-3 gap-y-9 sm:grid-cols-2 sm:gap-x-5 lg:grid-cols-4 lg:gap-x-6">
 
         {products.map((product) => (
           <div
             key={product.id}
-            className="group relative overflow-hidden"
+            className="group min-w-0 bg-white"
           >
-            {/* Image */}
-            <div className="relative aspect-square overflow-hidden bg-gray-100">
 
+            {/* Product Image */}
+            <Link
+              to={`/products/${product.id}`}
+              className="relative flex h-[180px] items-center justify-center overflow-hidden bg-[#f5f5f5] sm:h-[240px] lg:h-[260px]"
+            >
               <img
                 src={product.image}
                 alt={product.name}
                 loading="lazy"
-                className="h-full w-full object-contain p-5 transition-transform duration-500 group-hover:scale-110"
+                className="h-full w-full object-contain object-center p-3 transition-transform duration-500 group-hover:scale-105 sm:p-5"
               />
 
               {/* New Badge */}
-              <span className="absolute left-3 top-3 bg-black px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white">
+              <span className="absolute left-2 top-2 bg-black px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-white sm:left-3 sm:top-3 sm:text-[10px]">
                 New
               </span>
+            </Link>
 
-              {/* Wishlist */}
-              <button
-                onClick={() => toggleWishlist(product.id)}
-                className={`absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-sm transition ${
-                  wishlist.includes(product.id)
-                    ? "text-red-500"
-                    : "text-gray-600 hover:text-red-500"
-                }`}
-                aria-label="Add to wishlist"
-              >
-                <FaHeart size={15} />
-              </button>
+            {/* Product Information */}
+            <div className="px-1 pt-4 sm:px-2 sm:pt-5">
 
-              {/* Hover Actions */}
-              <div className="absolute bottom-3 left-0 flex w-full translate-y-3 justify-center gap-3 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-
-                <button
-                  onClick={() => addToCart(product)}
-                  className="flex h-10 items-center gap-2 bg-black px-4 text-xs font-semibold text-white transition hover:bg-gray-800"
-                >
-                  <FaShoppingCart />
-                  Add to Cart
-                </button>
-
-                <button
-                  className="flex h-10 w-10 items-center justify-center bg-white text-black transition hover:bg-gray-200"
-                  aria-label="View product"
-                >
-                  <FaEye />
-                </button>
-
-              </div>
-            </div>
-
-            {/* Product Details */}
-            <div className="pt-4">
-
-              <p className="mb-2 text-xs text-gray-500">
+              {/* Category */}
+              <p className="mb-1.5 text-[10px] font-medium uppercase tracking-wider text-gray-400 sm:text-xs">
                 {product.category}
               </p>
 
-              <h3 className="min-h-10 text-sm font-semibold leading-5 text-gray-900 transition hover:text-gray-500 sm:text-base">
-                {product.name}
-              </h3>
+              {/* Product Name */}
+              <Link to={`/products/${product.id}`}>
+                <h3 className="min-h-10 text-xs font-semibold leading-5 text-[#222222] transition-colors hover:text-gray-500 sm:text-sm">
+                  {product.name}
+                </h3>
+              </Link>
 
-              <div className="mt-2 flex items-center justify-between">
-                <p className="text-base font-bold text-black">
+              {/* Price */}
+              <div className="mt-2 flex min-h-7 items-center gap-2">
+                <span className="text-sm font-bold text-black sm:text-base">
                   Rs. {product.price.toLocaleString("en-PK")}
-                </p>
-
-                <span className="text-[10px] font-medium uppercase tracking-wider text-gray-400">
-                  New
                 </span>
               </div>
+
+              {/* View Product */}
+              <Link
+                to={`/products/${product.id}`}
+                className="mt-3 flex h-10 w-full items-center justify-center border border-black bg-black px-2 text-[10px] font-bold uppercase tracking-[1.5px] text-white transition-all duration-300 hover:bg-white hover:text-black sm:text-xs"
+              >
+                View Product
+              </Link>
 
             </div>
           </div>
@@ -218,7 +178,7 @@ const NewArrivals = () => {
         </p>
       </div>
 
-    </div>
+    </section>
   );
 };
 

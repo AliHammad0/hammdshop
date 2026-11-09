@@ -7,6 +7,9 @@ import {
   FaTimes,
   FaSearch,
   FaChevronDown,
+  FaUser,
+  FaSignInAlt,
+  FaUserPlus,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -18,7 +21,6 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Products", path: "/products" },
-    { name: "Contact", path: "/contact" },
   ];
 
   const categories = [
@@ -30,7 +32,8 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 z-50 w-full bg-white border-b border-gray-100 font-[Arial,sans-serif]">
+    <nav className="fixed left-0 top-0 z-50 w-full border-b border-gray-100 bg-white font-[Arial,sans-serif]">
+
       <div className="container mx-auto px-5 md:px-10">
 
         <div className="flex h-20 items-center justify-between">
@@ -40,17 +43,17 @@ const Navbar = () => {
             to="/"
             className="text-2xl font-bold tracking-tight text-black"
           >
-            <span className="text-black">HAMMAD</span> SHOP
+            HAMMAD <span className="text-gray-500">SHOP</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-8 text-sm font-semibold text-gray-700">
+          <ul className="hidden items-center gap-8 text-sm font-semibold text-gray-700 md:flex">
 
-            {navLinks.slice(0, 2).map((link) => (
+            {navLinks.map((link) => (
               <li key={link.name}>
                 <Link
                   to={link.path}
-                  className="hover:text-red-600 transition-colors duration-200"
+                  className="transition-colors duration-200 hover:text-red-600"
                 >
                   {link.name}
                 </Link>
@@ -65,9 +68,10 @@ const Navbar = () => {
             >
               <button
                 onClick={() => setCategoryOpen(!categoryOpen)}
-                className="flex items-center gap-2 hover:text-red-600 transition-colors"
+                className="flex items-center gap-2 transition-colors hover:text-red-600"
               >
                 Category
+
                 <FaChevronDown
                   size={11}
                   className={`transition-transform duration-200 ${
@@ -77,15 +81,15 @@ const Navbar = () => {
               </button>
 
               {categoryOpen && (
-                <div className="absolute top-full left-0 pt-4 w-56">
-                  <div className="bg-white rounded-lg shadow-xl border border-gray-100 py-2">
+                <div className="absolute left-0 top-full w-56 pt-4">
+                  <div className="rounded-lg border border-gray-100 bg-white py-2 shadow-xl">
 
                     {categories.map((category) => (
                       <Link
                         key={category}
                         to={`/category/${category.toLowerCase().replaceAll(" ", "-")}`}
                         onClick={() => setCategoryOpen(false)}
-                        className="block px-5 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600 transition-colors"
+                        className="block px-5 py-3 text-sm text-gray-700 transition-colors hover:bg-gray-50 hover:text-red-600"
                       >
                         {category}
                       </Link>
@@ -96,10 +100,11 @@ const Navbar = () => {
               )}
             </li>
 
+            {/* Contact */}
             <li>
               <Link
                 to="/contact"
-                className="hover:text-red-600 transition-colors"
+                className="transition-colors hover:text-red-600"
               >
                 Contact
               </Link>
@@ -108,40 +113,63 @@ const Navbar = () => {
           </ul>
 
           {/* Right Icons */}
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-4 sm:gap-5">
 
+            {/* Search */}
             <button
               onClick={() => setSearchOpen(!searchOpen)}
-              className="text-gray-800 hover:text-red-600 transition"
+              className="text-gray-800 transition hover:text-red-600"
               aria-label="Search"
             >
               <FaSearch size={18} />
             </button>
 
+            {/* Wishlist */}
             <button
-              className="relative text-gray-800 hover:text-red-600 transition"
+              className="relative text-gray-800 transition hover:text-red-600"
               aria-label="Wishlist"
             >
               <FaHeart size={19} />
-              <span className="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-red-600 text-[10px] text-white">
+
+              <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-red-600 text-[10px] text-white">
                 2
               </span>
             </button>
 
+            {/* Cart */}
             <button
-              className="relative text-gray-800 hover:text-red-600 transition"
+              className="relative text-gray-800 transition hover:text-red-600"
               aria-label="Shopping cart"
             >
               <FaShoppingCart size={19} />
-              <span className="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-red-600 text-[10px] text-white">
+
+              <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-red-600 text-[10px] text-white">
                 3
               </span>
             </button>
 
+            {/* Login */}
+            <Link
+              to="/login"
+              className="hidden items-center gap-2 text-sm font-semibold text-gray-800 transition hover:text-red-600 sm:flex"
+            >
+              <FaUser size={16} />
+              Login
+            </Link>
+
+            {/* Signup */}
+            <Link
+              to="/signup"
+              className="hidden items-center gap-2 rounded-sm bg-black px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-red-600 sm:flex"
+            >
+              <FaUserPlus size={15} />
+              Sign Up
+            </Link>
+
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden text-xl text-gray-800"
+              className="text-xl text-gray-800 md:hidden"
               aria-label="Toggle menu"
             >
               {menuOpen ? <FaTimes /> : <FaBars />}
@@ -156,23 +184,23 @@ const Navbar = () => {
             <input
               type="text"
               placeholder="Search products..."
-              className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm outline-none focus:border-red-500"
+              className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm outline-none focus:border-black"
             />
           </div>
         )}
 
         {/* Mobile Navigation */}
         {menuOpen && (
-          <div className="md:hidden border-t border-gray-100 py-5">
+          <div className="border-t border-gray-100 py-5 md:hidden">
 
             <ul className="flex flex-col gap-5 text-sm font-semibold text-gray-700">
 
-              {navLinks.slice(0, 2).map((link) => (
+              {navLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.path}
                     onClick={() => setMenuOpen(false)}
-                    className="block hover:text-red-600"
+                    className="block transition hover:text-red-600"
                   >
                     {link.name}
                   </Link>
@@ -186,6 +214,7 @@ const Navbar = () => {
                   className="flex w-full items-center justify-between hover:text-red-600"
                 >
                   Category
+
                   <FaChevronDown
                     className={`transition-transform ${
                       categoryOpen ? "rotate-180" : ""
@@ -203,7 +232,7 @@ const Navbar = () => {
                           setMenuOpen(false);
                           setCategoryOpen(false);
                         }}
-                        className="text-gray-600 hover:text-red-600"
+                        className="text-gray-600 transition hover:text-red-600"
                       >
                         {category}
                       </Link>
@@ -212,6 +241,7 @@ const Navbar = () => {
                 )}
               </li>
 
+              {/* Mobile Contact */}
               <li>
                 <Link
                   to="/contact"
@@ -219,6 +249,30 @@ const Navbar = () => {
                   className="block hover:text-red-600"
                 >
                   Contact
+                </Link>
+              </li>
+
+              {/* Mobile Login */}
+              <li className="border-t border-gray-100 pt-4">
+                <Link
+                  to="/login"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center gap-3 hover:text-red-600"
+                >
+                  <FaSignInAlt size={16} />
+                  Login
+                </Link>
+              </li>
+
+              {/* Mobile Signup */}
+              <li>
+                <Link
+                  to="/signup"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center gap-3 hover:text-red-600"
+                >
+                  <FaUserPlus size={16} />
+                  Create Account
                 </Link>
               </li>
 

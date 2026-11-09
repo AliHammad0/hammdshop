@@ -10,6 +10,8 @@ import NewArrivals from './Pages/NewArrivals'
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import Footer from "./Pages/Footer";
+import Login from "./Pages/Login";
+import Signup from "./Pages/Signup";
 
 const Home = () => {
   return (
@@ -32,6 +34,8 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/details" element={<ProductDetails />} />
         <Route path="/products" element={<Product />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         
       </Routes>
 
